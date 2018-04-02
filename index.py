@@ -27,6 +27,7 @@ def get_all_filesname(folder_name):
     """Get all the filenames in this folder"""
     filename_array = []
     for (dirpath, dirnames, filenames) in walk(folder_name):
+        print(filenames)
         filename_array.extend(filenames)
         break
     return filename_array
