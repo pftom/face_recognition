@@ -90,7 +90,7 @@ while True:
 
         face_paths.append({
             "left": left,
-            "top": top,
+            "bottom": bottom,
             "name": name,
         })
 
@@ -110,7 +110,7 @@ while True:
         break
 
 # store filename in a variable
-filename = 'trace.json'
+filename = './visualization/src/trace.json'
 
 with open(filename, 'w') as file_obj:
     """store face_paths to local files"""

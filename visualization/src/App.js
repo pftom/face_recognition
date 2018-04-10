@@ -1,18 +1,40 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import echarts from 'echarts';
+import tracedData from './trace.json';
+
 import './App.css';
 
 class App extends Component {
+
+  componentDidMount() {
+    // construct data
+    const readyToRenderData = tracedData.map(item => {
+      if (item.name === 'weige') {
+        return [item.left, item.bottom];
+      }
+    });
+
+    console.log('readyToRenderData', readyToRenderData);
+
+    this.myChart = echarts.init(document.getElementById('renderChart'));
+
+    this.option = {
+        xAxis: {},
+        yAxis: {},
+        series: [{
+            symbolSize: 20,
+            data: readyToRenderData,
+            type: 'scatter'
+        }]
+    };
+  
+   this.myChart.setOption(this.option);
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <div id="renderChart"></div>
       </div>
     );
   }
